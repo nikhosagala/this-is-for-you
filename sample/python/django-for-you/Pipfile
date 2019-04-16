@@ -10,6 +10,8 @@ autopep8 = "*"
 django = "*"
 dj-database-url = "*"
 psycopg2 = "*"
+djangorestframework = "*"
+djangorestframework-jwt = "*"
 
 [requires]
 python_version = "3.6"
