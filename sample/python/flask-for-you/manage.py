@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
-from flask.ext.runner import Manager
 from flask_migrate import MigrateCommand, Migrate
+from flask_script import Manager
 
 from src import app, db
 

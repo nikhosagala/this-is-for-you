@@ -11,9 +11,9 @@ flask-restful = "*"
 flask-sqlalchemy = "*"
 flask-marshmallow = "*"
 flask-migrate = "*"
-flask-runner = "*"
 marshmallow-sqlalchemy = "*"
 werkzeug = "==0.14.1"
+flask-script = "*"
 
 [requires]
 python_version = "3.6"
