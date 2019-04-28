@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+  flask-for-you:
+    container_name: flask_for_you
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - SQLALCHEMY_DATABASE_URI=postgres://flask_userforyou:passwordforyou@flask-db-for-you:5432/flask_foryou
+      - DEBUG=0
+    depends_on:
+      - flask-db-for-you
+    ports:
+      - 8000:8000
+  flask-db-for-you:
+    image: postgres
+    container_name: flask_db_for_you
+    environment:
+      - POSTGRES_DB=flask_foryou
+      - POSTGRES_USER=flask_userforyou
+      - POSTGRES_PASSWORD=passwordforyou
+    ports:
+      - 5432:5432
+    volumes:
+      - "./docker/db-backups:/root/db-backups"
