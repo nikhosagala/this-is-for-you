@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "-p", "8000", "-t", "0.0.0.0"]
+CMD ["python", "manage.py", "runserver", "-p", "8000", "-h", "0.0.0.0"]
