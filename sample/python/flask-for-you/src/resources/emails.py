@@ -7,6 +7,7 @@ from src.utils.databases import commit_to_db
 from src.utils.marsmallow import schema_load
 from src.utils.models import EmailToSend
 from src.utils.schemas import SendEmailSchema
+from src.utils.scripts import check_email_to_send
 
 
 class SendEmail(Resource):
@@ -16,3 +17,8 @@ class SendEmail(Resource):
         send_email = EmailToSend(**data)
         commit_to_db(send_email)
         return dict(message='ok'), HTTPStatus.CREATED
+
+
+class ProcessEmail(Resource):
+    def get(self):
+        check_email_to_send()

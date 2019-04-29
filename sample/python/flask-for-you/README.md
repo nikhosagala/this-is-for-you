@@ -59,3 +59,8 @@
 #### You need to run migration before running the app
 
 `(.venv)$ python manage.py db upgrade`
+
+
+#### How to run celery worker
+
+`(.venv)$ celery -A src.utils.tasks.celery worker`

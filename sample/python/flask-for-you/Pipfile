@@ -15,6 +15,7 @@ marshmallow-sqlalchemy = "*"
 werkzeug = "==0.14.1"
 flask-script = "*"
 mimesis = "*"
+celery = "*"
 
 [requires]
 python_version = "3.6"

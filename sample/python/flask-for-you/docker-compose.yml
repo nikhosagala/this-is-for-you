@@ -8,7 +8,7 @@ services:
       context: .
     environment:
       - SQLALCHEMY_DATABASE_URI=postgres://flask_userforyou:passwordforyou@flask-db-for-you:5432/flask_foryou
-      - DEBUG=0
+      - API_VERSION=0.0.1
     depends_on:
       - flask-db-for-you
     ports:
@@ -24,3 +24,13 @@ services:
       - 5432:5432
     volumes:
       - "./docker/db-backups:/root/db-backups"
+  rabbitmq-for-you:
+    hostname: rabbitmq
+    image: rabbitmq:3.7-management
+    container_name: rabbitmq_for_you
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbituser
+      RABBITMQ_DEFAULT_PASS: rabbitpassword
+    ports:
+      - 5672:5672
+      - 15672:15672
