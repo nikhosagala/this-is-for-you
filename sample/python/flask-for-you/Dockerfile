@@ -6,7 +6,7 @@ COPY ["Pipfile", "Pipfile.lock", "./"]
 
 RUN set -ex &&\
     apk add --no-cache --virtual .build-deps gcc musl-dev &&\
-    apk add --no-cache postgresql-dev python3-dev bash &&\
+    apk add --no-cache postgresql-dev python3-dev &&\
     pip install pipenv && pipenv install --deploy --system &&\
     apk del --no-cache .build-deps
 
