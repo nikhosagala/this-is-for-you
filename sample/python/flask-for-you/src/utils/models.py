@@ -18,3 +18,10 @@ class EmailToSend(BaseModelMixin, db.Model):
     subject = db.Column(db.String, nullable=False)
     content = db.Column(db.String, nullable=False)
     send_date = db.Column(db.DateTime, nullable=False)
+
+
+class User(BaseModelMixin, db.Model):
+    __tablename__ = 'user'
+
+    name = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False)

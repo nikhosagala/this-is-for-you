@@ -6,4 +6,4 @@ class SendEmailSchema(Schema):
     event_id = Integer(required=True)
     subject = String(required=True)
     content = String(required=True)
-    send_date = DateTime(required=True)
+    send_date = DateTime(required=True, format='%d-%m-%YT%H:%M')

@@ -14,6 +14,7 @@ flask-migrate = "*"
 marshmallow-sqlalchemy = "*"
 werkzeug = "==0.14.1"
 flask-script = "*"
+mimesis = "*"
 
 [requires]
 python_version = "3.6"
