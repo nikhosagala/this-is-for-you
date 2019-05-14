@@ -18,7 +18,7 @@ class BaseModel(TimestampedModel):
         abstract = True
 
 
-class User(AbstractUser, BaseModel):
+class User(AbstractUser, TimestampedModel):
     USERNAME_FIELD = 'email'
     email = models.EmailField(unique=True)
     username = models.CharField(unique=False, blank=True, max_length=150, null=True)
