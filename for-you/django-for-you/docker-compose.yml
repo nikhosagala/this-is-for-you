@@ -3,23 +3,23 @@ version: '3.6'
 services:
   django-for-you:
     container_name: django_for_you
-    build: 
+    build:
       dockerfile: Dockerfile
       context: .
-    environment: 
-     - DATABASE_URL=postgres://userforyou:passwordforyou@db-for-you:5432/foryou
-    depends_on: 
-      - db-for-you
-    ports: 
-      - 8000:8000
-  db-for-you:
-    image: postgres
-    container_name: db_for_you
     environment:
-      - POSTGRES_DB=foryou
-      - POSTGRES_USER=userforyou
-      - POSTGRES_PASSWORD=passwordforyou
-    ports: 
+      - DATABASE_URL=postgres://userfordjango:passwordfordjango@db-for-you:5432/dbfordjango
+    depends_on:
+      - db-for-you-django
+    ports:
+      - 8000:8000
+  db-for-you-django:
+    image: postgres
+    container_name: db_for_you_django
+    environment:
+      - POSTGRES_DB=dbfordjango
+      - POSTGRES_USER=userfordjango
+      - POSTGRES_PASSWORD=passwordfordjango
+    ports:
       - 5432:5432
     volumes:
       - "./docker/db-backups:/root/db-backups"

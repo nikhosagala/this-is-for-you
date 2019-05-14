@@ -1,13 +1,13 @@
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.http import JsonResponse
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
 
-from foryou.permissions import IsOwnerOrAdmin
-from foryou.serializers import UserRegisterSerializer, UserProfileSerializer, UserUpdateSerializer
+from users.permissions import IsOwnerOrAdmin
+from users.serializers import UserRegisterSerializer, UserProfileSerializer, UserUpdateSerializer
 
 
 def version(request):
@@ -15,13 +15,15 @@ def version(request):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = get_user_model().objects.all()
     serializer_class = UserProfileSerializer
 
     def create(self, request, *args, **kwargs):
         serializer = UserRegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+            user.set_password(serializer.validated_data.get('password'))
+            user.save()
             if user:
                 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
                 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER

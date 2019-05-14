@@ -7,19 +7,19 @@ services:
       dockerfile: Dockerfile
       context: .
     environment:
-      - SQLALCHEMY_DATABASE_URI=postgres://flask_userforyou:passwordforyou@flask-db-for-you:5432/flask_foryou
+      - SQLALCHEMY_DATABASE_URI=postgres://userforflask:passwordforflask@flask-db-for-you:5432/dbforflask
       - API_VERSION=0.0.1
     depends_on:
-      - flask-db-for-you
+      - db-for-you-flask
     ports:
       - 8000:8000
-  flask-db-for-you:
+  db-for-you-flask:
     image: postgres
-    container_name: flask_db_for_you
+    container_name: db_for_you_flask
     environment:
-      - POSTGRES_DB=flask_foryou
-      - POSTGRES_USER=flask_userforyou
-      - POSTGRES_PASSWORD=passwordforyou
+      - POSTGRES_DB=dbforflask
+      - POSTGRES_USER=userforflask
+      - POSTGRES_PASSWORD=passwordforflask
     ports:
       - 5432:5432
     volumes:
