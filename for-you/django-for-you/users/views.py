@@ -43,8 +43,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
         partial = kwargs.pop('partial', False)
         serializer = UserUpdateSerializer(instance, data=request.data, partial=partial)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def list(self, request, *args, **kwargs):
