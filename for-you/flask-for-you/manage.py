@@ -4,7 +4,7 @@
 from flask_migrate import MigrateCommand, Migrate
 from flask_script import Manager
 
-from src import app, db
+from mailer.app import app, db
 
 migrate = Migrate(app, db)
 

@@ -1,5 +1,5 @@
-from src import make_celery, app
-from src.utils.models import User, EmailToSend
+from mailer.app import make_celery, app
+from mailer.models import User, EmailToSend
 
 celery = make_celery(app)
 

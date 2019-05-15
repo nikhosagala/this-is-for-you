@@ -1,7 +1,7 @@
 import os
 
 SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI',
-                                         'postgres://flask_userforyou:passwordforyou@localhost:5432/flask_foryou')
+                                         'postgres://userforflask:passwordforflask@localhost:5433/dbforflask')
 
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 

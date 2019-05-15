@@ -5,9 +5,8 @@ from flask import Flask
 from flask_marshmallow import Marshmallow
 from flask_restful import Api
 
-from src.resources.emails import SendEmail, ProcessEmail
-from src.resources.status import Status, Faker
-from src.utils.models import db
+from mailer.models import db
+from mailer.views import Status, SendEmail, ProcessEmail, Faker
 
 
 def make_celery(application):

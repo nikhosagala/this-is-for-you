@@ -3,7 +3,7 @@ import json
 from flask import request
 from werkzeug.exceptions import BadRequest
 
-from src.utils.exceptions import ApiException
+from .exceptions import ApiException
 
 
 def schema_load(schema, json_data):
