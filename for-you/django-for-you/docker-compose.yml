@@ -7,7 +7,8 @@ services:
       dockerfile: Dockerfile
       context: .
     environment:
-      - DATABASE_URL=postgres://userfordjango:passwordfordjango@db-for-you:5432/dbfordjango
+      - DATABASE_URL=postgres://userfordjango:passwordfordjango@db-for-you-django:5432/dbfordjango
+      - API_VERSION=0.0.2
     depends_on:
       - db-for-you-django
     ports:
