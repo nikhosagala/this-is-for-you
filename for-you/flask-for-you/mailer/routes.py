@@ -1,6 +1,7 @@
 import http
 
 from flask import Blueprint, request, jsonify, current_app
+from marshmallow import ValidationError
 
 from mailer.models import EmailToSend
 from mailer.schemas import SendEmailSchema
@@ -11,11 +12,17 @@ mailer_blueprint = Blueprint("mailer", __name__, url_prefix="/")
 @mailer_blueprint.route("send_email", methods=("POST",))
 def send_email():
     if request.data.decode("utf-8"):
+        from mailer.tasks import send_pending_email
+
         schema = SendEmailSchema()
-        request_data = schema.load(request.json)
-        email = EmailToSend(**request_data)
-        email.save()
-        return jsonify({"message": "ok"}), http.HTTPStatus.CREATED
+        try:
+            request_data = schema.load(request.json)
+            email = EmailToSend(**request_data)
+            email.save()
+            send_pending_email.apply_async((email.id,), countdown=3)
+            return jsonify({"message": "ok"}), http.HTTPStatus.CREATED
+        except ValidationError as e:
+            return jsonify({"message": e.messages}), http.HTTPStatus.BAD_REQUEST
     return jsonify({"message": "No data given"}), http.HTTPStatus.BAD_REQUEST
 
 

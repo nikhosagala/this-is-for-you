@@ -43,7 +43,7 @@ class BaseModelMixin(db.Model):
 
 
 class EmailToSend(BaseModelMixin):
-    __tablename__ = 'email_to_send'
+    __tablename__ = "email_to_send"
 
     event_id = db.Column(db.Integer, nullable=False)
     subject = db.Column(db.String, nullable=False)
@@ -53,7 +53,7 @@ class EmailToSend(BaseModelMixin):
 
 
 class User(BaseModelMixin):
-    __tablename__ = 'user'
+    __tablename__ = "user"
 
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
