@@ -14,7 +14,7 @@ services:
     ports:
       - 8000:8000
   db-for-you-flask:
-    image: postgres
+    image:  postgres:11-alpine
     container_name: db_for_you_flask
     environment:
       - POSTGRES_DB=dbforflask

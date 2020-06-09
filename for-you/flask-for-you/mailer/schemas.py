@@ -1,9 +1,10 @@
-from marshmallow import Schema
-from marshmallow.fields import Integer, String, DateTime
+from mailer import ma
+from mailer.models import EmailToSend
+from marshmallow.fields import DateTime
 
 
-class SendEmailSchema(Schema):
-    event_id = Integer(required=True)
-    subject = String(required=True)
-    content = String(required=True)
+class SendEmailSchema(ma.SQLAlchemyAutoSchema):
     send_date = DateTime(required=True, format='%d-%m-%YT%H:%M')
+
+    class Meta:
+        model = EmailToSend
