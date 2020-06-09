@@ -1,7 +1,6 @@
 # This is an example of flask app
 
 ## Available API
- * `/status`
  * `/send_email`
     
     request body :
@@ -11,7 +10,7 @@
        "event_id": 10, 
        "subject": "Email subject", 
        "content": "Email content", 
-       "send_date": "29-04-2019T15:00",
+       "send_date": "29-04-2019T15:00"
     }
     ```
  
@@ -35,32 +34,24 @@
 
 #### Build by yourself
 
-* You need pipenv installed
+* You need poetry installed
 
-    `pip install pipenv`
+    `poetry install`
 
 * Install app requirements
 
-    `pipenv install --deploy` 
+    `poetry install` 
     
-    or you want install everything to your system? 
-    
-    `pipenv install --deploy --system`
-
-* Activate sub-shell
-
-    `pipenv shell`
-
 * Run flask inside sub-shell
 
-    `(.venv)$ python manage.py runserver`
+    `(.venv)$ flask run`
     
     
 #### You need to run migration before running the app
 
-`(.venv)$ python manage.py db upgrade`
+`(.venv)$ alembic upgrade head`
 
 
 #### How to run celery worker
 
-`(.venv)$ celery -A src.utils.tasks.celery worker`
+`(.venv)$ celery -A mailer.tasks.celery worker`

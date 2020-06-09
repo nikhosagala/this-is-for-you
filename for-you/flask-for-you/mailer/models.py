@@ -57,3 +57,9 @@ class User(BaseModelMixin):
 
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
+
+    def __str__(self):
+        return f"<{self.name} {self.email}>"
+
+    def __repr__(self):
+        return f"<{self.name} {self.email}>"

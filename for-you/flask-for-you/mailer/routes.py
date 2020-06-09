@@ -19,7 +19,7 @@ def send_email():
             request_data = schema.load(request.json)
             email = EmailToSend(**request_data)
             email.save()
-            send_pending_email.apply_async((email.id,), countdown=3)
+            send_pending_email.apply_async((email.id,), eta=email.send_date)
             return jsonify({"message": "ok"}), http.HTTPStatus.CREATED
         except ValidationError as e:
             return jsonify({"message": e.messages}), http.HTTPStatus.BAD_REQUEST
